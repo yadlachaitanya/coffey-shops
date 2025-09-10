@@ -5,89 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coffey – Coffee Shop Demo</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; scroll-behavior: smooth; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; scroll-behavior:smooth; }
     body { background:#f7f2ed; color:#333; }
-    header { position:sticky; top:0; background:#3e2723; color:#fff;
-             display:flex; justify-content:space-between; align-items:center;
-             padding:15px 30px; z-index:1000; }
+    header {
+      position:sticky; top:0; background:#3e2723; color:#fff;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:15px 30px; z-index:1000;
+    }
     .logo { font-size:1.8rem; font-weight:bold; }
     nav a { margin:0 10px; color:#fff; text-decoration:none; }
     nav a:hover { text-decoration:underline; }
 
     section { padding:60px 20px; max-width:1200px; margin:auto; }
     h2 { text-align:center; margin-bottom:30px; }
-    .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; }
+    .card-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:20px;
+    }
     .card {
       background:#fff; padding:20px; border-radius:8px;
       box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center;
     }
-    form { display:flex; flex-direction:column; max-width:500px; margin:auto; }
-    form input, form textarea { margin:10px 0; padding:10px; border:1px solid #aaa; border-radius:5px; }
-    form button { background:#3e2723; color:#fff; padding:10px; border:none; border-radius:5px; cursor:pointer; }
-
-    footer { background:#3e2723; color:#fff; text-align:center; padding:20px; }
-
-    /* Embedded Section Styles */
-    #home {
-      background: url('https://cdn.pixabay.com/photo/2017/11/19/16/10/coffee-2967241_1280.jpg') center/cover no-repeat;
-      height:80vh; display:flex; align-items:center; justify-content:center;
-      color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.7);
+    .card img {
+      width:100%; height:200px; object-fit:cover; border-radius:6px; margin-bottom:10px;
     }
-    #home h1 { font-size:3rem; background:rgba(0,0,0,0.4); padding:20px; border-radius:8px; }
-    .product-img { width:100%; height:auto; border-radius:8px; }
+
+    form {
+      display:flex; flex-direction:column;
+      max-width:500px; margin:auto;
+    }
+    form input, form textarea {
+      margin:10px 0; padding:10px;
+      border:1px solid #aaa; border-radius:5px;
+    }
+    form button {
+      background:#3e2723; color:#fff; padding:10px;
+      border:none; border-radius:5px; cursor:pointer;
+    }
+
+    footer {
+      background:#3e2723; color:#fff;
+      text-align:center; padding:20px;
+    }
+
+    /* Hero Section */
+    #home {
+      background: url('https://cdn.pixabay.com/photo/2020/06/28/11/44/coffee-5345294_1280.jpg') center/cover no-repeat;
+      height:90vh; display:flex; align-items:center; justify-content:center;
+      color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.6);
+    }
+    #home h1 {
+      font-size:3rem; background:rgba(0,0,0,0.4);
+      padding:20px; border-radius:10px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- ===== Header ===== -->
   <header>
     <div class="logo">Coffey</div>
     <nav>
-      <a href="#home">Home</a><a href="#about">About</a><a href="#menu">Menu</a>
-      <a href="#products">Products</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#products">Products</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
       <a href="#blogs">Blogs</a>
     </nav>
   </header>
 
+  <!-- ===== Home Section ===== -->
   <section id="home">
-    <h1>Freshly Brewed Bliss at Coffey</h1>
+    <h1>Welcome to Coffey – Your Daily Dose of Coffee Bliss</h1>
   </section>
 
+  <!-- ===== About Section ===== -->
   <section id="about">
     <h2>About Us</h2>
-    <p>At Coffey, we’re dedicated to delivering premium coffee experiences. Ethically sourced beans and heartfelt brews, every time.</p>
+    <div class="card">
+      <img src="https://cdn.pixabay.com/photo/2017/08/07/14/02/coffee-2608864_1280.jpg" alt="Coffee Shop">
+      <p>We believe in great coffee, strong community, and warm experiences. Sourced ethically and brewed with love daily.</p>
+    </div>
   </section>
 
+  <!-- ===== Menu Section ===== -->
   <section id="menu">
-    <h2>Our Menu</h2>
+    <h2>Our Coffee Menu</h2>
     <div class="card-grid">
-      <div class="card"><h3>Espresso</h3><p>Bold and rich.</p><p>$2.99</p></div>
-      <div class="card"><h3>Latte</h3><p>Creamy delight.</p><p>$3.99</p></div>
-      <div class="card"><h3>Mocha</h3><p>Chocolate infused.</p><p>$4.50</p></div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2015/06/24/16/36/coffee-820659_1280.jpg" alt="Espresso">
+        <h3>Espresso</h3>
+        <p>Strong, rich, bold flavor.</p>
+        <p>$2.99</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2016/11/29/02/11/coffee-1869820_1280.jpg" alt="Latte">
+        <h3>Latte</h3>
+        <p>Smooth blend of milk & espresso.</p>
+        <p>$3.99</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2020/05/10/09/40/mocha-5151540_1280.jpg" alt="Mocha">
+        <h3>Mocha</h3>
+        <p>Chocolate meets coffee.</p>
+        <p>$4.50</p>
+      </div>
     </div>
   </section>
 
+  <!-- ===== Products Section ===== -->
   <section id="products">
-    <h2>Our Products</h2>
+    <h2>Our Coffee Products</h2>
     <div class="card-grid">
       <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2016/02/18/22/16/coffee-1209820_1280.jpg" alt="Coffee Beans" class="product-img">
-        <h3>Coffee Beans</h3><p>Fresh 500g bag.</p><p>$12.99</p>
+        <img src="https://cdn.pixabay.com/photo/2016/11/29/03/20/beans-1869827_1280.jpg" alt="Coffee Beans">
+        <h3>Arabica Beans</h3>
+        <p>500g freshly roasted pack.</p>
+        <p>$12.99</p>
       </div>
       <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2017/05/21/08/18/coffee-2332355_1280.jpg" alt="Coffee Product" class="product-img">
-        <h3>Specialty Beans</h3><p>Premium roasted.</p><p>$14.99</p>
+        <img src="https://cdn.pixabay.com/photo/2017/04/23/08/28/coffee-2250974_1280.jpg" alt="Coffee Mug">
+        <h3>Coffey Mug</h3>
+        <p>Ceramic, 350ml, heat-proof.</p>
+        <p>$8.99</p>
       </div>
     </div>
   </section>
 
+  <!-- ===== Reviews Section ===== -->
   <section id="reviews">
     <h2>Customer Reviews</h2>
     <div class="card-grid">
-      <div class="card"><p>"Best coffee in town! Cozy vibe."</p><strong>- Alex</strong></div>
-      <div class="card"><p>"Espresso game changes here."</p><strong>- Jamie</strong></div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2021/06/28/09/08/man-6370840_1280.jpg" alt="Customer Alex">
+        <p>"Incredible espresso and cozy vibes. My daily go-to."</p>
+        <strong>- Alex</strong>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2020/03/24/13/50/woman-4963997_1280.jpg" alt="Customer Jamie">
+        <p>"Amazing lattes and the friendliest staff around!"</p>
+        <strong>- Jamie</strong>
+      </div>
     </div>
   </section>
 
+  <!-- ===== Contact Section ===== -->
   <section id="contact">
     <h2>Contact Us</h2>
     <form id="contactForm">
@@ -98,25 +163,38 @@
     </form>
   </section>
 
+  <!-- ===== Blogs Section ===== -->
   <section id="blogs">
-    <h2>Latest Blogs</h2>
+    <h2>Our Coffee Blogs</h2>
     <div class="card-grid">
-      <div class="card"><h3>The Art of Brewing</h3><p>Master the perfect brew...</p><a href="#">Read More</a></div>
-      <div class="card"><h3>Fresh Beans, Better Flavor</h3><p>Why fresh matters.</p><a href="#">Read More</a></div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2016/11/21/15/47/coffee-1846389_1280.jpg" alt="Blog 1">
+        <h3>The Art of Brewing</h3>
+        <p>Mastering techniques for the perfect cup.</p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2020/11/29/14/47/coffee-5788044_1280.jpg" alt="Blog 2">
+        <h3>Why Fresh Beans Matter</h3>
+        <p>The secret behind that rich flavor.</p>
+        <a href="#">Read More</a>
+      </div>
     </div>
   </section>
 
+  <!-- ===== Footer ===== -->
   <footer>
     <p>&copy; 2025 Coffey. All rights reserved.</p>
   </footer>
 
+  <!-- ===== JS ===== -->
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      alert('Thank you for reaching out!');
+      alert("Thanks! We'll get back to you soon.");
       this.reset();
     });
   </script>
+
 </body>
 </html>
-
