@@ -1,198 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coffey – Coffee Shop Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee House Demo</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; scroll-behavior:smooth; }
-    body { background:#f7f2ed; color:#333; }
-    header {
-      position:sticky; top:0; background:#3e2723; color:#fff;
-      display:flex; justify-content:space-between; align-items:center;
-      padding:15px 30px; z-index:1000;
-    }
-    .logo { font-size:1.8rem; font-weight:bold; }
-    nav a { margin:0 10px; color:#fff; text-decoration:none; }
-    nav a:hover { text-decoration:underline; }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
 
-    section { padding:60px 20px; max-width:1200px; margin:auto; }
-    h2 { text-align:center; margin-bottom:30px; }
-    .card-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-      gap:20px;
+    /* Global */
+    section { padding: 60px 20px; max-width: 1200px; margin: auto; }
+    h2 { text-align: center; margin-bottom: 30px; font-size: 2rem; color: #4b2e2e; }
+    p { margin-bottom: 15px; }
+
+    /* Navigation */
+    nav {
+      background: #4b2e2e; 
+      color: #fff; 
+      padding: 15px 40px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .card {
-      background:#fff; padding:20px; border-radius:8px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center;
-    }
-    .card img {
-      width:100%; height:200px; object-fit:cover; border-radius:6px; margin-bottom:10px;
+    nav .logo { font-size: 1.5rem; font-weight: bold; }
+    nav ul { display: flex; list-style: none; }
+    nav ul li { margin: 0 15px; }
+    nav ul li a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+    nav ul li a:hover { color: #f7c08a; }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger div { width: 25px; height: 3px; background: #fff; margin: 4px; transition: 0.3s; }
+
+    /* Mobile menu */
+    @media(max-width: 768px) {
+      nav ul { 
+        display: none; 
+        flex-direction: column; 
+        background: #4b2e2e; 
+        position: absolute; 
+        top: 60px; 
+        right: 0; 
+        width: 200px; 
+        text-align: right; 
+      }
+      nav ul.show { display: flex; }
+      .hamburger { display: flex; }
     }
 
-    form {
-      display:flex; flex-direction:column;
-      max-width:500px; margin:auto;
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
     }
-    form input, form textarea {
-      margin:10px 0; padding:10px;
-      border:1px solid #aaa; border-radius:5px;
-    }
-    form button {
-      background:#3e2723; color:#fff; padding:10px;
-      border:none; border-radius:5px; cursor:pointer;
-    }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 15px; }
+    .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+    .hero a { padding: 10px 20px; background: #f7c08a; color: #4b2e2e; text-decoration: none; border-radius: 5px; font-weight: bold; }
 
-    footer {
-      background:#3e2723; color:#fff;
-      text-align:center; padding:20px;
-    }
+    /* About */
+    .about { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+    .about img { width: 100%; max-width: 500px; border-radius: 10px; }
+    .about div { flex: 1; }
 
-    /* Hero Section */
-    #home {
-      background: url('https://cdn.pixabay.com/photo/2020/06/28/11/44/coffee-5345294_1280.jpg') center/cover no-repeat;
-      height:90vh; display:flex; align-items:center; justify-content:center;
-      color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.6);
-    }
-    #home h1 {
-      font-size:3rem; background:rgba(0,0,0,0.4);
-      padding:20px; border-radius:10px;
-    }
+    /* Menu */
+    .menu-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .menu-item { background: #f8f5f0; padding: 20px; border-radius: 10px; text-align: center; }
+    .menu-item h3 { margin-bottom: 10px; color: #4b2e2e; }
+
+    /* Testimonials */
+    .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .testimonial { background: #fff4e6; padding: 20px; border-radius: 10px; font-style: italic; }
+
+    /* Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .gallery img { width: 100%; border-radius: 10px; }
+
+    /* Contact */
+    .contact form { display: grid; gap: 15px; max-width: 600px; margin: auto; }
+    .contact input, .contact textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    .contact button { background: #4b2e2e; color: #fff; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+    .contact button:hover { background: #f7c08a; color: #4b2e2e; }
+
+    /* Footer */
+    footer { background: #4b2e2e; color: #fff; text-align: center; padding: 20px; }
   </style>
 </head>
 <body>
 
-  <!-- ===== Header ===== -->
-  <header>
-    <div class="logo">Coffey</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#menu">Menu</a>
-      <a href="#products">Products</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#contact">Contact</a>
-      <a href="#blogs">Blogs</a>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Coffee House</div>
+    <ul id="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
 
-  <!-- ===== Home Section ===== -->
-  <section id="home">
-    <h1>Welcome to Coffey – Your Daily Dose of Coffee Bliss</h1>
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <h1>Welcome to Coffee House</h1>
+    <p>Freshly brewed coffee, cozy atmosphere, and great company.</p>
+    <a href="#menu">See Our Menu</a>
   </section>
 
-  <!-- ===== About Section ===== -->
+  <!-- About -->
   <section id="about">
     <h2>About Us</h2>
-    <div class="card">
-      <img src="https://cdn.pixabay.com/photo/2017/08/07/14/02/coffee-2608864_1280.jpg" alt="Coffee Shop">
-      <p>We believe in great coffee, strong community, and warm experiences. Sourced ethically and brewed with love daily.</p>
+    <div class="about">
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80" alt="Coffee Shop">
+      <div>
+        <p>At Coffee House, we believe coffee is more than just a drink—it’s a way to connect, relax, and recharge. Our beans are ethically sourced and roasted to perfection.</p>
+        <p>Whether you’re here to work, meet friends, or enjoy a quiet moment, our shop is designed to make you feel at home.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Menu Section ===== -->
+  <!-- Menu -->
   <section id="menu">
-    <h2>Our Coffee Menu</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2015/06/24/16/36/coffee-820659_1280.jpg" alt="Espresso">
+    <h2>Our Menu</h2>
+    <div class="menu-items">
+      <div class="menu-item">
         <h3>Espresso</h3>
-        <p>Strong, rich, bold flavor.</p>
-        <p>$2.99</p>
+        <p>Rich and bold shot of pure coffee.</p>
+        <p>$3.00</p>
       </div>
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2016/11/29/02/11/coffee-1869820_1280.jpg" alt="Latte">
-        <h3>Latte</h3>
-        <p>Smooth blend of milk & espresso.</p>
-        <p>$3.99</p>
-      </div>
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2020/05/10/09/40/mocha-5151540_1280.jpg" alt="Mocha">
-        <h3>Mocha</h3>
-        <p>Chocolate meets coffee.</p>
+      <div class="menu-item">
+        <h3>Cappuccino</h3>
+        <p>Espresso with steamed milk and foam.</p>
         <p>$4.50</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== Products Section ===== -->
-  <section id="products">
-    <h2>Our Coffee Products</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2016/11/29/03/20/beans-1869827_1280.jpg" alt="Coffee Beans">
-        <h3>Arabica Beans</h3>
-        <p>500g freshly roasted pack.</p>
-        <p>$12.99</p>
+      <div class="menu-item">
+        <h3>Latte</h3>
+        <p>Smooth blend of espresso and milk.</p>
+        <p>$4.00</p>
       </div>
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2017/04/23/08/28/coffee-2250974_1280.jpg" alt="Coffee Mug">
-        <h3>Coffey Mug</h3>
-        <p>Ceramic, 350ml, heat-proof.</p>
-        <p>$8.99</p>
+      <div class="menu-item">
+        <h3>Mocha</h3>
+        <p>Espresso with chocolate and milk.</p>
+        <p>$4.75</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Reviews Section ===== -->
-  <section id="reviews">
-    <h2>Customer Reviews</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2021/06/28/09/08/man-6370840_1280.jpg" alt="Customer Alex">
-        <p>"Incredible espresso and cozy vibes. My daily go-to."</p>
-        <strong>- Alex</strong>
-      </div>
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2020/03/24/13/50/woman-4963997_1280.jpg" alt="Customer Jamie">
-        <p>"Amazing lattes and the friendliest staff around!"</p>
-        <strong>- Jamie</strong>
-      </div>
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">"Best coffee in town! The ambiance is cozy and welcoming." – Sarah L.</div>
+      <div class="testimonial">"I come here every morning before work. Highly recommended!" – John D.</div>
+      <div class="testimonial">"The staff are so friendly and the lattes are amazing!" – Emma R.</div>
     </div>
   </section>
 
-  <!-- ===== Contact Section ===== -->
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2>Our Gallery</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Coffee">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Cafe">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Coffee cup">
+      <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80" alt="Coffee beans">
+    </div>
+  </section>
+
+  <!-- Contact -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
-  <!-- ===== Blogs Section ===== -->
-  <section id="blogs">
-    <h2>Our Coffee Blogs</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2016/11/21/15/47/coffee-1846389_1280.jpg" alt="Blog 1">
-        <h3>The Art of Brewing</h3>
-        <p>Mastering techniques for the perfect cup.</p>
-        <a href="#">Read More</a>
-      </div>
-      <div class="card">
-        <img src="https://cdn.pixabay.com/photo/2020/11/29/14/47/coffee-5788044_1280.jpg" alt="Blog 2">
-        <h3>Why Fresh Beans Matter</h3>
-        <p>The secret behind that rich flavor.</p>
-        <a href="#">Read More</a>
-      </div>
+    <div class="contact">
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Coffey. All rights reserved.</p>
+    <p>&copy; 2025 Coffee House. All Rights Reserved.</p>
   </footer>
 
-  <!-- ===== JS ===== -->
+  <!-- JavaScript -->
   <script>
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("Thanks! We'll get back to you soon.");
-      this.reset();
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
     });
   </script>
 
